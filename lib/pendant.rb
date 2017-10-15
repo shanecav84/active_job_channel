@@ -1,0 +1,3 @@
+module Pendant
+  # Your code goes here...
+end
