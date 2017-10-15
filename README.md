@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pendant'
+gem 'pendant_cabel'
 ```
 
 And then execute:
