@@ -1,0 +1,15 @@
+# The fixed indentation style is rational. To align with the first parameters
+# is arguably friendly, but makes for long lines and obscures control flow.
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# Both the leading and trailing styles can be argued for. Singlebrook has
+# chosen the trailing style.
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented

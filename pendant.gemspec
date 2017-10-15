@@ -12,7 +12,12 @@ Gem::Specification.new do |s|
   s.summary     = 'Easily indicate a pending ActiveJob using ActionCable'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir[
+    '{app,config,db,lib}/**/*',
+    'MIT-LICENSE',
+    'Rakefile',
+    'README.md'
+  ]
 
   s.add_dependency 'rails', '~> 5.1.4'
 
