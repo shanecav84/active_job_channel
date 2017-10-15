@@ -9,9 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Pendant::VERSION
   s.authors     = ["Shane Cavanaugh"]
   s.email       = ["shane@shanecav.net"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Pendant."
-  s.description = "TODO: Description of Pendant."
+  s.summary     = "Easily indicate a pending ActiveJob using ActionCable"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
