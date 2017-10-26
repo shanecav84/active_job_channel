@@ -17,11 +17,19 @@ module Pendant
 
     module InstanceMethods
       def broadcast_failure
-        PendantChannel.broadcast_to 'pendant_channel', status: 'failure'
+        PendantChannel.broadcast_to(
+          'pendant_channel',
+          status: 'failure',
+          job_id: job_id
+        )
       end
 
       def broadcast_success
-        PendantChannel.broadcast_to 'pendant_channel', status: 'success'
+        PendantChannel.broadcast_to(
+          'pendant_channel',
+          status: 'success',
+          job_id: job_id
+        )
       end
     end
   end
