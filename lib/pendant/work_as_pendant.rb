@@ -3,7 +3,7 @@ module Pendant
     module ClassMethods
 
       def work_as_pendant
-        self.class_eval do
+        class_eval do
           after_perform :broadcast_success
           rescue_from '::StandardError' do |exception|
             broadcast_failure
