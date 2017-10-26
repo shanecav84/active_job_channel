@@ -1,7 +1,7 @@
-const CHANNEL = "PendantChannel"
+const CHANNEL = "PendantChannel";
 
 document.addEventListener("DOMContentLoaded", function(_event) {
-  App.pendant = App.cable.subscriptions.create({ channel: CHANNEL },
+  App.pendant = App.pendant.subscriptions.create({ channel: CHANNEL },
     {
       connected: function () {
         // Called when the subscription is ready for use on the server
