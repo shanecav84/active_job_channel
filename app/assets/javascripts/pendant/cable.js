@@ -5,6 +5,6 @@
 (function() {
   this.App || (this.App = {});
 
-  App.pendant_cable = ActionCable.createConsumer('cable/pendant');
+  App.pendant_cable = ActionCable.createConsumer('/cable/pendant');
 
 }).call(this);
