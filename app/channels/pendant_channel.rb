@@ -1,5 +1,5 @@
 class PendantChannel < ::ApplicationCable::Channel
   def subscribed
-    stream_from 'pendant_channel'
+    stream_for 'pendant_channel'
   end
 end
