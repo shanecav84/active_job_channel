@@ -1,6 +1,10 @@
+//= require action_cable
+//= require_self
+//= require_tree ./channels
+
 (function() {
   this.App || (this.App = {});
 
-  App.pendant = ActionCable.createConsumer('cable/pendant');
+  App.pendant_cable = ActionCable.createConsumer('cable/pendant');
 
 }).call(this);
