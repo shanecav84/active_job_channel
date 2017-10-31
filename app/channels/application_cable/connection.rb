@@ -1,7 +1,4 @@
-module PendantCable
-  class Connection
-    def connect
-      print 'BLORG'
-    end
+module ApplicationCable
+  class Connection < ActionCable::Connection::Base
   end
 end
