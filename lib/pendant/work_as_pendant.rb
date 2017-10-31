@@ -4,6 +4,8 @@ module Pendant
 
       def work_as_pendant
         class_eval do
+          mattr_accessor(:pendants) { [] }
+          before_perform :before_perform
           after_perform :broadcast_success
           rescue_from '::StandardError' do |exception|
             broadcast_failure
@@ -16,6 +18,10 @@ module Pendant
     end
 
     module InstanceMethods
+      def before_perform
+        self.class.pendants << job_id
+      end
+
       def broadcast_failure
         PendantChannel.broadcast_to(
           'pendant_channel',
