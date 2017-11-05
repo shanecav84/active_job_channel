@@ -3,14 +3,12 @@ module Pendant
     module ClassMethods
 
       def work_as_pendant(options = {})
-        class_eval do
-          mattr_accessor(:job_name) { options[:job_name] }
+        mattr_accessor(:job_name) { options[:job_name] }
 
-          after_perform :broadcast_success
-          rescue_from '::StandardError' do |exception|
-            broadcast_failure
-            raise exception
-          end
+        after_perform :broadcast_success
+        rescue_from '::StandardError' do |exception|
+          broadcast_failure
+          raise exception
         end
 
         include Pendant::WorkAsPendant::InstanceMethods
