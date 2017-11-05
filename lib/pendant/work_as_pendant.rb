@@ -1,7 +1,6 @@
 module Pendant
   module WorkAsPendant
     module ClassMethods
-
       def work_as_pendant(options = {})
         mattr_accessor(:job_name) { options[:job_name] }
 
