@@ -1,14 +1,14 @@
 # ActiveJobNotifier
-Short description and motivation.
+Uses ActionCable to alert front-end users of finished ActiveJobs
 
 ## Usage
-How to use my plugin.
+TBD
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'active_job_notifier_cabel'
+gem 'active_job_notifier'
 ```
 
 And then execute:
@@ -20,9 +20,6 @@ Or install it yourself as:
 ```bash
 $ gem install active_job_notifier
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
