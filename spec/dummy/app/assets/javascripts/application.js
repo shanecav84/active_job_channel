@@ -11,4 +11,4 @@
 // about supported directives.
 //
 //= require_tree .
-//= require 'pendant/application'
+//= require 'active_job_notifier/application'

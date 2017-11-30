@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (_event) {
-  const CHANNEL = "::PendantChannel";
+  const CHANNEL = "::ActiveJobNotifierChannel";
   console.log('Subscribing to ' + CHANNEL);
 
-  App.pendant = App.pendant_cable.subscriptions.create(
+  App.active_job_notifier = App.active_job_notifier_cable.subscriptions.create(
     {
       channel: CHANNEL
     },

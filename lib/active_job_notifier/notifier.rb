@@ -1,7 +1,7 @@
-module Pendant
-  module WorkAsPendant
+module ActiveJobNotifier
+  module Notifier
     module ClassMethods
-      def work_as_pendant(options = {})
+      def active_job_notifier(options = {})
         mattr_accessor(:job_name) { options[:job_name] }
 
         after_perform :broadcast_success
@@ -10,22 +10,22 @@ module Pendant
           raise exception
         end
 
-        include Pendant::WorkAsPendant::InstanceMethods
+        include ActiveJobNotifier::Notifier::InstanceMethods
       end
     end
 
     module InstanceMethods
       def broadcast_failure
-        PendantChannel.broadcast_to(
-          'pendant_channel',
+        ActiveJobNotifierChannel.broadcast_to(
+          'active_job_notifier_channel',
           status: 'failure',
           job_name: self.class.job_name
         )
       end
 
       def broadcast_success
-        PendantChannel.broadcast_to(
-          'pendant_channel',
+        ActiveJobNotifierChannel.broadcast_to(
+          'active_job_notifier_channel',
           status: 'success',
           job_name: self.class.job_name
         )

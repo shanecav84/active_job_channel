@@ -1,12 +1,12 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
-require 'pendant/version'
+require 'active_job_notifier/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'pendant'
-  s.version     = Pendant::VERSION
+  s.name        = 'active_job_notifier'
+  s.version     = ActiveJobNotifier::VERSION
   s.authors     = ['Shane Cavanaugh']
   s.email       = ['shane@shanecav.net']
   s.summary     = 'Easily indicate a pending ActiveJob using ActionCable'

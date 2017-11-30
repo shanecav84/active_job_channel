@@ -5,6 +5,6 @@
 (function() {
   this.App || (this.App = {});
 
-  App.pendant_cable = ActionCable.createConsumer('/cable/pendant');
+  App.active_job_notifier_cable = ActionCable.createConsumer('/cable/active_job_notifier');
 
 }).call(this);

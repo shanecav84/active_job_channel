@@ -1,4 +1,4 @@
-# Pendant
+# ActiveJobNotifier
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pendant_cabel'
+gem 'active_job_notifier_cabel'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install pendant
+$ gem install active_job_notifier
 ```
 
 ## Contributing
