@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", function (_event) {
       received: function (data) {
         // Called when there's incoming data on the websocket for this channel
         console.log('Successfully received data from ' + CHANNEL);
-        console.log(data);
+        var status = data.status;
+        var job_name = data.job_name;
+        if (status === 'success') { console.log(job_name + ' completed'); }
+        else if (status === 'failure') { console.log(job_name + ' failed'); }
+        else { console.error('Job status could not be determined'); }
       }
     }
   );
