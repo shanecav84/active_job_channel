@@ -7,7 +7,8 @@ Gem::Specification.new do |s|
   s.version     = ActiveJobChannel::VERSION
   s.authors     = ['Shane Cavanaugh']
   s.email       = ['shane@shanecav.net']
-  s.summary     = 'Uses `ActionCable` to alert front-end users of finished `ActiveJobs`'
+  s.summary     = 'Uses `ActionCable` to alert front-end users of ' \
+    'finished `ActiveJobs`'
   s.license     = 'MIT'
 
   s.files = Dir[
@@ -16,9 +17,10 @@ Gem::Specification.new do |s|
     'Rakefile',
     'README.md'
   ]
-  s.test_files = Dir["spec/**/*"]
+  s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'rails', '>= 5.0.0' # Earliest version that includes `ActionCable`
+  # Earliest version that includes `ActionCable`
+  s.add_dependency 'rails', '>= 5.0.0'
 
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'puma'

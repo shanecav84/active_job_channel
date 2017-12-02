@@ -17,3 +17,6 @@ Layout/MultilineMethodCallIndentation:
 
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+Style/Documentation:
+  Enabled: false
