@@ -1,6 +1,11 @@
 require_relative 'boot'
 
-require 'rails/all'
+require 'action_controller/railtie'
+require 'active_job/railtie'
+require 'action_mailer/railtie'
+require 'action_cable/engine'
+require 'rails/test_unit/railtie'
+require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
 require "active_job_notifier"
