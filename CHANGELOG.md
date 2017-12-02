@@ -5,5 +5,10 @@ All notable changes to this project will be documented in this file.
 This project follows [semver 2.0.0](http://semver.org/spec/v2.0.0.html) and the
 recommendations of [keepachangelog.com](http://keepachangelog.com/).
 
+## 0.0.2 - 2017-12-02
+- Use our own websocket endpoint
+- Use `stream_from` rather than `stream_for` when connecting to our channel
+- Simplify organization
+
 ## 0.0.1 - 2017-12-02
 - Initial release
