@@ -4,7 +4,7 @@ RSpec.describe ApplicationJob do
   it 'broadcasts success' do
     expect(::ActiveJobNotifierChannel).
       to receive(:broadcast_to).
-      with('active_job_notifier_channel', status: 'success', job_name: 'Job Name')
+      with('active_job_notifier_channel', status: 'success', job_name: 'ApplicationJob')
     described_class.perform_now
   end
 
@@ -14,14 +14,14 @@ RSpec.describe ApplicationJob do
       and_raise(::StandardError)
     expect(::ActiveJobNotifierChannel).
       to receive(:broadcast_to).
-      with('active_job_notifier_channel', status: 'failure', job_name: 'Job Name')
+      with('active_job_notifier_channel', status: 'failure', job_name: 'ApplicationJob')
     expect { described_class.perform_now }.to raise_error(::StandardError)
   end
 
   it 'broadcasts the job name' do
     expect(::ActiveJobNotifierChannel).
       to receive(:broadcast_to).
-      with('active_job_notifier_channel', status: 'success', job_name: 'Job Name')
+      with('active_job_notifier_channel', status: 'success', job_name: 'ApplicationJob')
     described_class.perform_now
   end
 end
