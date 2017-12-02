@@ -1,5 +1,12 @@
 module ActiveJobChannel
   class Engine < ::Rails::Engine
-    isolate_namespace ActiveJobChannel
+    ActiveSupport.on_load(:active_job) do
+      require 'active_job_channel/broadcaster'
+      ActiveJob::Base.send :extend, ActiveJobChannel::Broadcaster::ClassMethods
+    end
+
+    ActiveSupport.on_load(:action_cable) do
+      require 'active_job_channel/channel'
+    end
   end
 end
