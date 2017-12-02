@@ -19,7 +19,7 @@
 
 // Setup ActionCable subscriber
 document.addEventListener("DOMContentLoaded", function (_event) {
-  const CHANNEL = "::ActiveJobChannel";
+  const CHANNEL = "::ActiveJobChannel::Channel";
   App.active_job_channel = App.active_job_channel_cable.subscriptions.create(
     { channel: CHANNEL },
     { received: function (data) { ActiveJobChannel.received(data); } }
