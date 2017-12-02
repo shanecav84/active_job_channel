@@ -35,7 +35,8 @@ end
 ```
 
 To customize the client-side notification, define `ActiveJobChannel.received`
-after including `active_job_channel.js`
+after including `active_job_channel.js`. The current default simply logs the 
+job status to the javascript console.
 
 ```javascript
   //= require notifyjs
