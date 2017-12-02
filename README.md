@@ -1,12 +1,6 @@
 # `ActiveJobNotifier`
 Uses `ActionCable` to alert front-end users of finished `ActiveJobs`
 
-## Requirements
-* `ActionCable`
-    * Persisted [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter) -
-    currently only PostgreSQL and Redis are supported
-* `ActiveJob`
-
 ## Installation
 1. Install in your Gemfile
 
@@ -15,6 +9,10 @@ Uses `ActionCable` to alert front-end users of finished `ActiveJobs`
     ```
 
 2. Setup an [`ActionCable` subscription adapter](http://edgeguides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
+    * Note: A persisted subscription adapter is required for handling notifications
+    from background `ActiveJob` processes. Currently only PostgreSQL and Redis
+    are supported.
+
 3. Include `active_job_notifier.js` in your layouts
 
     ```ruby
@@ -55,7 +53,7 @@ after including `active_job_notifer.js`
 `ActiveJobNotifier` depends on `ActiveJob` and `ActionCable`, and, as such, is
 subject to their limitations:
 
-* A persisted[subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
+* A persisted [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
 is required for `ActionCable` to handle notifications from background 
 `ActiveJob` processes
 * Because `ActiveJob` does not know when a job has permanently failed, 
