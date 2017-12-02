@@ -1,5 +1,5 @@
 class ApplicationJob < ActiveJob::Base
-  active_job_notifier job_name: 'Job Name'
+  active_job_notifier
 
   def perform
     fake
