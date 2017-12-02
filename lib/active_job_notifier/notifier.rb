@@ -17,7 +17,7 @@ module ActiveJobNotifier
         ActiveJobNotifierChannel.broadcast_to(
           'active_job_notifier_channel',
           status: 'failure',
-          job_name: self.class.to_s
+          job_name: self.to_s
         )
       end
 
@@ -25,7 +25,7 @@ module ActiveJobNotifier
         ActiveJobNotifierChannel.broadcast_to(
           'active_job_notifier_channel',
           status: 'success',
-          job_name: self.class.to_s
+          job_name: self.to_s
         )
       end
     end
