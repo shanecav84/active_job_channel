@@ -1,3 +1,3 @@
 module ActiveJobChannel
-  VERSION = '0.0.1.alpha'.freeze
+  VERSION = '0.0.1'.freeze
 end
