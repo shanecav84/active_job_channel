@@ -1,23 +1,32 @@
-# ActiveJobNotifier
-Uses ActionCable to alert front-end users of finished ActiveJobs
+# `ActiveJobNotifier`
+Uses `ActionCable` to alert front-end users of finished `ActiveJobs`
 
 ## Requirements
-* Persisted, asychronous [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter) -
-Postgres or Redis
+* `ActionCable`
+    * Persisted [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter) -
+    currently only PostgreSQL and Redis are supported
+* `ActiveJob`
 
 ## Installation
-1. Add to Gemfile
+1. Install in your Gemfile
 
     ```ruby
     gem 'active_job_notifier'
     ```
-2. Setup an [`ActionCable` adapter](http://edgeguides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
-3. Include the javascript in your layout
+
+2. Setup an [`ActionCable` subscription adapter](http://edgeguides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
+3. Include `active_job_notifier.js` in your layouts
 
     ```ruby
-    javascript_include_tag 'active_job_notifier/application'
+    javascript_include_tag 'active_job_notifier'
     ```
-    
+
+    or include it in your `app/assets/javascripts/application.js`
+
+    ```javascript
+      //= require active_job_notifer
+    ```
+
 ## Usage
 For each job you'd like to be notified about, enable `active_job_notifier`
 
@@ -27,11 +36,26 @@ class MyJob < ActiveJob::Base
 end
 ```
 
-## Caveats
-`ActiveJobNotifier` depends on `ActiveJob` and `ActionCable`, and, as such, is subject
-to their limitations.
+To customize the client-side notification, define `ActiveJobNotifer.notify`
+after including `active_job_notifer.js`
 
-* A persisted, asynchronous [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
+```javascript
+  //= require notifyjs
+  //= require active_job_notifier
+
+  ActiveJobNotifer.notify = function(data) {
+    var status = data.status;
+    var job_name = data.job_name;
+    if (status === 'success') { $.notify(job_name + ' succeeded!') }
+    else if (status === 'failure') { $.notify(job_name + ' failed!') }
+  }
+```
+
+## Caveats
+`ActiveJobNotifier` depends on `ActiveJob` and `ActionCable`, and, as such, is
+subject to their limitations:
+
+* A persisted[subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
 is required for `ActionCable` to handle notifications from background 
 `ActiveJob` processes
 * Because `ActiveJob` does not know when a job has permanently failed, 
