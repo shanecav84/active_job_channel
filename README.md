@@ -13,6 +13,9 @@ Uses `ActionCable` to alert front-end users of finished `ActiveJobs`
     from background `ActiveJob` processes. Currently only PostgreSQL and Redis
     are supported.
 
+3. (Optional) If you need authorization for notifications, [set up your own
+    `ApplicationCable::Connection`](http://guides.rubyonrails.org/action_cable_overview.html#server-side-components-connections)
+
 3. Include `active_job_channel.js` in your layouts
 
     ```ruby
@@ -61,7 +64,6 @@ is required for `ActionCable` to handle notifications from background
 `ActiveJobChannel` sends notfications for each failure, retried or final
 
 ## Todo
-- Handle connection authorization
 - Better default front-end notification behavior
 
 ## License
