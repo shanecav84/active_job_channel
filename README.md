@@ -34,14 +34,14 @@ class MyJob < ActiveJob::Base
 end
 ```
 
-To customize the client-side notification, define `ActiveJobChannel.notify`
+To customize the client-side notification, define `ActiveJobChannel.received`
 after including `active_job_channel.js`
 
 ```javascript
   //= require notifyjs
   //= require active_job_channel
 
-  ActiveJobChannel.notify = function(data) {
+  ActiveJobChannel.received = function(data) {
     var status = data.status;
     var job_name = data.job_name;
     if (status === 'success') { $.notify(job_name + ' succeeded!') }
