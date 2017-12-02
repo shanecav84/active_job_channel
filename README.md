@@ -5,24 +5,26 @@ Uses ActionCable to alert front-end users of finished ActiveJobs
 * Persisted, asychronous [subscription adapter](http://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter) -
 Postgres or Redis
 
-## Usage
-TBD
-
 ## Installation
-Add this line to your application's Gemfile:
+1. Add to Gemfile
+
+    ```ruby
+    gem 'active_job_notifier'
+    ```
+2. Setup an [`ActionCable` adapter](http://edgeguides.rubyonrails.org/action_cable_overview.html#subscription-adapter)
+3. Include the javascript in your layout
+
+    ```ruby
+    javascript_include_tag 'active_job_notifier/application'
+    ```
+    
+## Usage
+For each job you'd like to be notified about, enable `active_job_notifier`
 
 ```ruby
-gem 'active_job_notifier'
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install active_job_notifier
+class MyJob < ActiveJob::Base
+  active_job_notifier
+end
 ```
 
 ## Caveats
