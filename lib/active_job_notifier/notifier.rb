@@ -1,7 +1,7 @@
 module ActiveJobNotifier
   module Notifier
     module ClassMethods
-      def active_job_notifier(options = {})
+      def active_job_notifier
         after_perform :broadcast_success
         rescue_from '::StandardError' do |exception|
           broadcast_failure
