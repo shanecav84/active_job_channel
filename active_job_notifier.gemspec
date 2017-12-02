@@ -1,10 +1,10 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
-require 'active_job_notifier/version'
+require 'active_job_channel/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'active_job_notifier'
-  s.version     = ActiveJobNotifier::VERSION
+  s.name        = 'active_job_channel'
+  s.version     = ActiveJobChannel::VERSION
   s.authors     = ['Shane Cavanaugh']
   s.email       = ['shane@shanecav.net']
   s.summary     = 'Uses `ActionCable` to alert front-end users of finished `ActiveJobs`'

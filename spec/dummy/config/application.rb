@@ -8,7 +8,7 @@ require 'rails/test_unit/railtie'
 require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
-require "active_job_notifier"
+require "active_job_channel"
 
 module Dummy
   class Application < Rails::Application

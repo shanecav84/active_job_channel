@@ -1,5 +1,5 @@
 class ApplicationJob < ActiveJob::Base
-  active_job_notifier
+  active_job_channel
 
   def perform
     fake
