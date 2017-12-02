@@ -60,5 +60,9 @@ is required for `ActionCable` to handle notifications from background
 * Because `ActiveJob` does not know when a job has permanently failed, 
 `ActiveJobChannel` sends notfications for each failure, retried or final
 
+## Todo
+- Handle connection authorization
+- Better default front-end notification behavior
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
