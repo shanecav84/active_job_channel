@@ -3,7 +3,7 @@
 (function() {
   // Setup ActionCable connection
   this.App || (this.App = {});
-  App.active_job_channel_cable = ActionCable.createConsumer('/cable/active_job_channel');
+  App.cable = ActionCable.createConsumer();
 
   // Setup up ActiveJobChannel received method
   this.ActiveJobChannel || (this.ActiveJobChannel = {});
@@ -20,7 +20,7 @@
 // Setup ActionCable subscriber
 document.addEventListener("DOMContentLoaded", function (_event) {
   const CHANNEL = "::ActiveJobChannel::Channel";
-  App.active_job_channel = App.active_job_channel_cable.subscriptions.create(
+  App.active_job_channel = App.cable.subscriptions.create(
     { channel: CHANNEL },
     { received: function (data) { ActiveJobChannel.received(data); } }
   );
