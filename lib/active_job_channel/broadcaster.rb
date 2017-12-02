@@ -14,7 +14,7 @@ module ActiveJobChannel
 
     module InstanceMethods
       def broadcast_failure
-        ActiveJobChannel.broadcast_to(
+        ActiveJobChannel::Channel.broadcast_to(
           'active_job_channel',
           status: 'failure',
           job_name: self.class.to_s
@@ -22,7 +22,7 @@ module ActiveJobChannel
       end
 
       def broadcast_success
-        ActiveJobChannel.broadcast_to(
+        ActiveJobChannel::Channel.broadcast_to(
           'active_job_channel',
           status: 'success',
           job_name: self.class.to_s
