@@ -3,7 +3,7 @@
 (function() {
   // Setup ActionCable connection
   this.App || (this.App = {});
-  App.cable = ActionCable.createConsumer();
+  App.cable = ActionCable.createConsumer('/cable/active-job-channel');
 
   // Setup up ActiveJobChannel received method
   this.ActiveJobChannel || (this.ActiveJobChannel = {});
