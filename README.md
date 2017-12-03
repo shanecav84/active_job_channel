@@ -62,6 +62,9 @@ is required for `ActionCable` to handle notifications from background
 `ActiveJob` processes
 * Because `ActiveJob` does not know when a job has permanently failed, 
 `ActiveJobChannel` sends notfications for each failure, retried or final
+* Connections will be authorized using your `ApplicationCable::Connection` class, 
+but they are not identifiable from `ActiveJob`, so all authorized connections 
+will receive all notifications
 
 ## Todo
 - Better default front-end notification behavior
