@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   # Earliest version that includes `ActionCable`
   s.add_dependency 'rails', '>= 5.0.0'
 
+  s.add_development_dependency 'bundler-audit'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'puma' # Supports WebSockets for spec/dummy app
   s.add_development_dependency 'rspec-rails'

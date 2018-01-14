@@ -11,6 +11,10 @@ Bundler::GemHelper.install_tasks
 
 Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each { |f| load f }
 
+# bundler-audit task
+require 'bundler/audit/task'
+Bundler::Audit::Task.new
+
 # RuboCop task
 require 'rubocop/rake_task'
 desc 'Run all specs in spec directory (excluding plugin specs)'
@@ -22,4 +26,4 @@ require 'rspec/core/rake_task'
 desc 'Run all specs in spec directory (excluding plugin specs)'
 RSpec::Core::RakeTask.new
 
-task default: %i[rubocop spec]
+task default: %i[bundle:audit rubocop spec]
