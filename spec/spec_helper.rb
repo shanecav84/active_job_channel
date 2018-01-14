@@ -4,6 +4,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 
+ActiveJob::Base.queue_adapter = :test
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
