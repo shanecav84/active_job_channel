@@ -11,4 +11,4 @@
 // about supported directives.
 //
 //= require_tree .
-//= require 'active_job_channel/application'
+//= require 'active_job_channel'
