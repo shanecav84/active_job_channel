@@ -14,7 +14,12 @@ RSpec.describe ApplicationJob do
       and_raise(::StandardError)
     expect(ActionCable.server).
       to receive(:broadcast).
-      with('active_job_channel', status: 'failure', job_name: 'ApplicationJob')
+      with(
+        'active_job_channel',
+        status: 'failure',
+        job_name: 'ApplicationJob',
+        error: ::StandardError.new.inspect
+      )
     expect { described_class.perform_now }.to raise_error(::StandardError)
   end
 
