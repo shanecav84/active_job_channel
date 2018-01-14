@@ -9,7 +9,7 @@ Use ActionCable to alert front-end users of finished ActiveJobs
     ```
 
 ## Setup
-1. [Create ActionCable Connection](#create-actioncable-connection-(optional)) (optional)
+1. [Create ActionCable Connection](#create-actioncable-connection-optional) (optional)
 2. [Enable ActiveJobChannel for a job](#enable-activejobchannel-for-a-job)
 3. [Handle ActiveJobChannel broadcasts](#handle-activejobchannel-broadcasts)
 
