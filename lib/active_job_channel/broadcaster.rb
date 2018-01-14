@@ -13,9 +13,13 @@ module ActiveJobChannel
     end
 
     module InstanceMethods
+      private
+
+      attr_accessor :ajc_identifier
+
       def broadcast_failure
         ActionCable.server.broadcast(
-          'active_job_channel',
+          ajc_channel_name,
           status: 'failure',
           job_name: self.class.to_s
         )
@@ -23,10 +27,16 @@ module ActiveJobChannel
 
       def broadcast_success
         ActionCable.server.broadcast(
-          'active_job_channel',
+          ajc_channel_name,
           status: 'success',
           job_name: self.class.to_s
         )
+      end
+
+      def ajc_channel_name
+        [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
+          compact.
+          join('#')
       end
     end
   end
