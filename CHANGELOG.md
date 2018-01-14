@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project follows [semver 2.0.0](http://semver.org/spec/v2.0.0.html) and the
 recommendations of [keepachangelog.com](http://keepachangelog.com/).
 
+## 0.0.3 - 2018-01-13
+### Added
+- Broadcast notifications privately to connection identifiers
+- Option to broadcast notifications globally to all connections
+- Configurable client-side broadcast callbacks `ActiveJobChannel.onJobSuccess`
+    and `ActiveJobChannel.onJobFailure`
+
 ## 0.0.2 - 2017-12-02
 - Use our own websocket endpoint
 - Use `stream_from` rather than `stream_for` when connecting to our channel
