@@ -24,7 +24,7 @@ module ActiveJobChannel
 
         after_perform :broadcast_success
         rescue_from '::StandardError' do |exception|
-          broadcast_failure
+          broadcast_failure(exception)
           raise exception
         end
 
@@ -56,11 +56,12 @@ module ActiveJobChannel
         !ajc_config[:global_broadcast] && @ajc_identifier.nil?
       end
 
-      def broadcast_failure
+      def broadcast_failure(exception)
         ActionCable.server.broadcast(
           ajc_channel_name,
           status: 'failure',
-          job_name: self.class.to_s
+          job_name: self.class.to_s,
+          error: exception.inspect
         )
       end
 
