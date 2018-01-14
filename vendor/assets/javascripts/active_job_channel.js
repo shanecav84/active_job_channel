@@ -5,23 +5,24 @@
   this.App || (this.App = {});
   App.cable = ActionCable.createConsumer('/cable/active-job-channel');
 
-  // Setup up ActiveJobChannel received method
+  // Setup up ActiveJobChannel object
   this.ActiveJobChannel || (this.ActiveJobChannel = {});
-  ActiveJobChannel.received = ActiveJobChannel.received || function(data) {
-    var status = data.status;
-    var job_name = data.job_name;
-    if (status === 'success') { console.log(job_name + ' succeeded!'); }
-    else if (status === 'failure') { console.log(job_name + ' failed!'); }
-    else { console.error('Job status could not be determined'); }
+  ActiveJobChannel.onJobSuccess = ActiveJobChannel.onJobSuccess || function(job) {};
+  ActiveJobChannel.onJobFailure = ActiveJobChannel.onJobFailure || function(job) {};
+  ActiveJobChannel.onUnknownJobStatus = ActiveJobChannel.onUnknownJobStatus || function(job) {};
+  ActiveJobChannel.received = ActiveJobChannel.received || function(job) {
+    var status = job.status;
+    if (status === 'success') { ActiveJobChannel.onJobSuccess(job); }
+    else if (status === 'failure') { ActiveJobChannel.onJobFailure(job); }
+    else { ActiveJobChannel.onUnknownJobStatus(job); }
   }
-
 }).call(this);
 
 // Setup ActionCable subscriber
 document.addEventListener("DOMContentLoaded", function (_event) {
   const CHANNEL = "::ActiveJobChannel::Channel";
-  App.active_job_channel = App.cable.subscriptions.create(
+  App.activeJobChannel = App.cable.subscriptions.create(
     { channel: CHANNEL },
-    { received: function (data) { ActiveJobChannel.received(data); } }
+    { received: function (job) { ActiveJobChannel.received(job); } }
   );
 });
