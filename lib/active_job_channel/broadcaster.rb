@@ -20,7 +20,7 @@ module ActiveJobChannel
       def active_job_channel(options = {})
         class_attribute :ajc_config
         self.ajc_config = { global_broadcast: false }
-        self.ajc_config.merge!(options)
+        ajc_config.merge!(options)
 
         after_perform :broadcast_success
         rescue_from '::StandardError' do |exception|
