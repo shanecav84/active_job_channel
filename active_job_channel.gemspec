@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   ]
   s.test_files = Dir['spec/**/*']
 
+  s.required_ruby_version = '>= 2.2.2'
+
   # Earliest version that includes `ActionCable`
   s.add_dependency 'rails', '>= 5.0.0'
 
