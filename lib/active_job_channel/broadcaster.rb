@@ -1,7 +1,11 @@
 module ActiveJobChannel
   module Broadcaster
     module ClassMethods
-      def active_job_channel
+      def active_job_channel(options = {})
+        class_attribute :ajc_config
+        self.ajc_config = { global_broadcast: false }
+        self.ajc_config.merge!(options)
+
         after_perform :broadcast_success
         rescue_from '::StandardError' do |exception|
           broadcast_failure
@@ -34,9 +38,13 @@ module ActiveJobChannel
       end
 
       def ajc_channel_name
-        [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
-          compact.
-          join('#')
+        if ajc_config[:global_broadcast]
+          ::ActiveJobChannel::Channel::CHANNEL_NAME
+        else
+          [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
+            compact.
+            join('#')
+        end
       end
     end
   end

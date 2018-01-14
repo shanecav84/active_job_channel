@@ -1,5 +1,5 @@
 class ApplicationJob < ActiveJob::Base
-  active_job_channel
+  active_job_channel global_broadcast: true
 
   def perform(identifier)
     @ajc_identifier = identifier
