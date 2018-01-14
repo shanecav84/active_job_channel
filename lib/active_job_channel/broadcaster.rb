@@ -37,6 +37,16 @@ module ActiveJobChannel
 
       attr_writer :ajc_identifier
 
+      def ajc_channel_name
+        if ajc_config[:global_broadcast]
+          ::ActiveJobChannel::Channel::CHANNEL_NAME
+        else
+          [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
+            compact.
+            join('#')
+        end
+      end
+
       def ajc_identifier
         raise NoIdentifierError if ajc_identifier_missing?
         @ajc_identifier
@@ -60,16 +70,6 @@ module ActiveJobChannel
           status: 'success',
           job_name: self.class.to_s
         )
-      end
-
-      def ajc_channel_name
-        if ajc_config[:global_broadcast]
-          ::ActiveJobChannel::Channel::CHANNEL_NAME
-        else
-          [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
-            compact.
-            join('#')
-        end
       end
     end
   end
