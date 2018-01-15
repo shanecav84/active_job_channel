@@ -101,5 +101,24 @@ ActiveJobChannel sends notfications for each failure, retried or final
 ## Todo
 - Better default front-end notification behavior
 
+## Contributing
+
+### Dev setup
+
+1. Clone the project
+   ```bash
+   git clone https://github.com/shanecav84/active_job_channel
+   ```
+2. Install dependencies
+   ```bash
+   bundle install
+   ```
+3. Run the tests
+   ```bash
+   bundle exec rake
+   ```
+   
+Issues and pull requests are welcome.
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
