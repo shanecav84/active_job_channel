@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project follows [semver 2.0.0](http://semver.org/spec/v2.0.0.html) and the
 recommendations of [keepachangelog.com](http://keepachangelog.com/).
 
+## 0.3.0 - 2018-01-14
+Previous releases did not follow semantic versioning. This release is 
+functionally equivalent to 0.0.3, but adheres to semantic versioning. This 
+release has non-functional changes, mostly additional specs and doc updates.
+
 ## 0.0.3 - 2018-01-13
 ### Added
 - Broadcast notifications privately to connection identifiers
