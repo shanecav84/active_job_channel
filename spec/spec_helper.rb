@@ -1,8 +1,6 @@
-require 'byebug' unless ENV['DEBUG'].nil?
-ENV['RAILS_ENV'] ||= 'test'
-
-require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec'
+require 'active_job_channel'
+require 'byebug' unless ENV['DEBUG'].nil?
 
 RSpec.configure do |config|
   config.mock_with :rspec
