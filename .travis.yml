@@ -1,3 +1,4 @@
+before_instal: gem update --system
 cache: bundler
 language: ruby
 rvm:
