@@ -136,7 +136,8 @@ module ActiveJobChannel
       describe 'NoIdentifierError' do
         it 'is raised when ajc_identifier is missing for private broadcast' do
           DummyJob.active_job_channel global_broadcast: false
-          expect { DummyJob.perform_now }.to raise_error(NoIdentifierError)
+          expect { DummyJob.perform_now }.
+            to raise_error(::ActiveJobChannel::NoIdentifierError)
         end
       end
     end

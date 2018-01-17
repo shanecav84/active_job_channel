@@ -1,21 +1,7 @@
+require 'active_job_channel'
+
 module ActiveJobChannel
   module Broadcaster
-    class NoIdentifierError < NameError
-      MESSAGE = 'ActiveJobChannel expects an ActionCable Connection ' \
-        'identifier to broadcast to. The identifier should be made available ' \
-        'in your job via a method or an instance variable, either named ' \
-        '`ajc_identifier`. For details about setting up an identifier in ' \
-        'your ActionCable Connection, visit http://guides.rubyonrails.org/' \
-        "action_cable_overview.html#connection-setup\n\nTo broadcast " \
-        'globally without an identifier, pass in ' \
-        '`{ global_broadcast: true } ` to `active_job_channel` as part of an ' \
-        'options hash.'.freeze
-
-      def initialize(msg = MESSAGE)
-        super
-      end
-    end
-
     module ClassMethods
       def active_job_channel(options = {})
         class_attribute :ajc_config
@@ -48,7 +34,7 @@ module ActiveJobChannel
       end
 
       def ajc_identifier
-        raise NoIdentifierError if ajc_identifier_missing?
+        raise ::ActiveJobChannel::NoIdentifierError if ajc_identifier_missing?
         @ajc_identifier
       end
 
