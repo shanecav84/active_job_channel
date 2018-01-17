@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/active_job_channel.svg)](https://badge.fury.io/rb/active_job_channel)
+[![Build Status](https://travis-ci.org/shanecav84/active_job_channel.svg?branch=master)](https://travis-ci.org/shanecav84/active_job_channel)
 
 # ActiveJobChannel
 Use ActionCable to alert front-end users of finished ActiveJobs
