@@ -120,26 +120,26 @@ module ActiveJobChannel
           ajc_identifier = 'ajc_identifier'
           allow_any_instance_of(DummyJob).
             to receive(:ajc_identifier).
-              and_return(ajc_identifier)
+            and_return(ajc_identifier)
           allow_any_instance_of(DummyJob).
             to receive(:serialize).
-              and_return({})
+            and_return({})
           expect_any_instance_of(DummyJob).
             to receive(:broadcast_success).
-              and_call_original
+            and_call_original
 
           action_cable_server = double 'action_cable_server'
           allow(ActionCable).
             to receive(:server).
-              and_return(action_cable_server)
+            and_return(action_cable_server)
           expect(action_cable_server).
             to receive(:broadcast).
-              with(
-                "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
-                  "#{ajc_identifier}",
-                status: 'success',
-                data: {}
-              )
+            with(
+              "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
+                "#{ajc_identifier}",
+              status: 'success',
+              data: {}
+            )
 
           DummyJob.perform_now
         end
@@ -148,17 +148,17 @@ module ActiveJobChannel
           DummyJob.active_job_channel global_broadcast: true
           allow_any_instance_of(DummyJob).
             to receive(:ajc_identifier).
-              and_return('ajc_identifier')
+            and_return('ajc_identifier')
           expect { DummyJob.perform_now }.
             to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError).
-              with_message(/DummyJob/)
+            with_message(/DummyJob/)
         end
 
         it 'must be set for a private broadcast' do
           DummyJob.active_job_channel global_broadcast: false
           expect { DummyJob.perform_now }.
             to raise_error(::ActiveJobChannel::NoIdentifierError).
-              with_message(/DummyJob/)
+            with_message(/DummyJob/)
         end
       end
     end
