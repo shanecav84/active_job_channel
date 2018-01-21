@@ -113,7 +113,7 @@ module ActiveJobChannel
           DummyJob.perform_now
         end
 
-        context 'with ajc_identifier' do
+        context 'ajc_identifier' do
           it 'broadcast success to the identifier' do
             DummyJob.active_job_channel global_broadcast: false
             ajc_identifier = 'ajc_identifier'
@@ -141,6 +141,15 @@ module ActiveJobChannel
               )
 
             DummyJob.perform_now
+          end
+
+          it 'raises error for global_broadcast with ajc_identifer present' do
+            DummyJob.active_job_channel global_broadcast: true
+            allow_any_instance_of(DummyJob).
+              to receive(:ajc_identifier).
+              and_return('ajc_identifier')
+            expect { DummyJob.perform_now }.
+              to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError)
           end
         end
       end

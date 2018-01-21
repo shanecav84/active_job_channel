@@ -25,6 +25,7 @@ module ActiveJobChannel
 
       def ajc_channel_name
         if ajc_config[:global_broadcast]
+          raise UnnecessaryIdentifierError if ajc_identifier.present?
           ::ActiveJobChannel::Channel::CHANNEL_NAME
         else
           [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].

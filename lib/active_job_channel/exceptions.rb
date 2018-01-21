@@ -16,4 +16,16 @@ module ActiveJobChannel
       super
     end
   end
+
+  class UnnecessaryIdentifierError < ::ActiveJobChannel::Error
+    MESSAGE = 'ActiveJobChannel has been configured to broadcast globally, ' \
+        'but an `ajc_identifier` has been set. If the job information should ' \
+        'be broadcast globally, remove the `ajc_identifier`. Otherwise, pass ' \
+        'in `{ global_broadcast: true } ` to `active_job_channel` as part of ' \
+        'an options hash'.freeze
+
+    def initialize(msg = MESSAGE)
+      super
+    end
+  end
 end
