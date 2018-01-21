@@ -32,6 +32,9 @@ module ActiveJobChannel
           allow_any_instance_of(DummyJob).
             to receive(:fake).
             and_raise(StandardError)
+          allow_any_instance_of(DummyJob).
+            to receive(:serialize).
+            and_return({})
           expect_any_instance_of(DummyJob).
             to receive(:broadcast_failure).
             with(StandardError).
@@ -44,7 +47,7 @@ module ActiveJobChannel
             with(
               ::ActiveJobChannel::Channel::CHANNEL_NAME,
               status: 'failure',
-              job_name: DummyJob.to_s,
+              job: {},
               error: StandardError.new.inspect
             )
 
@@ -61,6 +64,9 @@ module ActiveJobChannel
             allow_any_instance_of(DummyJob).
               to receive(:ajc_identifier).
               and_return(ajc_identifier)
+            allow_any_instance_of(DummyJob).
+              to receive(:serialize).
+              and_return({})
             expect_any_instance_of(DummyJob).
               to receive(:broadcast_failure).
               with(StandardError).
@@ -76,7 +82,7 @@ module ActiveJobChannel
                 "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
                   "#{ajc_identifier}",
                 status: 'failure',
-                job_name: DummyJob.to_s,
+                job: {},
                 error: StandardError.new.inspect
               )
 
@@ -90,6 +96,9 @@ module ActiveJobChannel
           expect_any_instance_of(DummyJob).
             to receive(:broadcast_success).
             and_call_original
+          allow_any_instance_of(DummyJob).
+            to receive(:serialize).
+            and_return({})
 
           action_cable_server = double 'action_cable_server'
           allow(ActionCable).to receive(:server).and_return(action_cable_server)
@@ -98,7 +107,7 @@ module ActiveJobChannel
             with(
               ::ActiveJobChannel::Channel::CHANNEL_NAME,
               status: 'success',
-              job_name: DummyJob.to_s
+              job: {}
             )
 
           DummyJob.perform_now
@@ -111,6 +120,9 @@ module ActiveJobChannel
             allow_any_instance_of(DummyJob).
               to receive(:ajc_identifier).
               and_return(ajc_identifier)
+            allow_any_instance_of(DummyJob).
+              to receive(:serialize).
+              and_return({})
             expect_any_instance_of(DummyJob).
               to receive(:broadcast_success).
               and_call_original
@@ -125,7 +137,7 @@ module ActiveJobChannel
                 "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
                   "#{ajc_identifier}",
                 status: 'success',
-                job_name: DummyJob.to_s
+                job: {}
               )
 
             DummyJob.perform_now

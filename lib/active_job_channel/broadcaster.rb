@@ -46,7 +46,7 @@ module ActiveJobChannel
         ActionCable.server.broadcast(
           ajc_channel_name,
           status: 'failure',
-          job_name: self.class.to_s,
+          job: serialize,
           error: exception.inspect
         )
       end
@@ -55,7 +55,7 @@ module ActiveJobChannel
         ActionCable.server.broadcast(
           ajc_channel_name,
           status: 'success',
-          job_name: self.class.to_s
+          job: serialize
         )
       end
     end
