@@ -126,6 +126,8 @@ ActiveJobChannel sends notfications for each failure, retried or final
 - Better default front-end notification behavior
 
 ## Contributing
+   
+Issues and pull requests are welcome.
 
 ### Dev setup
 
@@ -141,8 +143,6 @@ ActiveJobChannel sends notfications for each failure, retried or final
    ```bash
    bundle exec rake
    ```
-   
-Issues and pull requests are welcome.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
