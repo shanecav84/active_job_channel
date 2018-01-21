@@ -4,6 +4,19 @@
 # ActiveJobChannel
 Use ActionCable to alert front-end users of finished ActiveJobs
 
+* [Installation](#installation)
+* [Setup](#setup)
+  1. [Create ActionCable Connection](#create-connection) (optional)
+  2. [Enable ActiveJobChannel for a job](#enable-active_job_channel)
+      * [Configuration](#configuration)
+        * [`global_brodcast`](#global_broadcast)
+  3. [Handle ActiveJobChannel broadcasts](#handle-broadcasts)
+* [Caveats](#caveats)
+* [Todo](#todo)
+* [Contributing](#contributing)
+    * [Dev setup](#dev-setup)
+* [License](#license)
+
 ## Installation
 1. Install in your Gemfile
 
@@ -12,11 +25,8 @@ Use ActionCable to alert front-end users of finished ActiveJobs
     ```
 
 ## Setup
-1. [Create ActionCable Connection](#create-actioncable-connection-optional) (optional)
-2. [Enable ActiveJobChannel for a job](#enable-activejobchannel-for-a-job)
-3. [Handle ActiveJobChannel broadcasts](#handle-activejobchannel-broadcasts)
 
-### Create ActionCable Connection (optional)
+### <a name="create-connection"></a> 1. Create ActionCable Connection (optional)
 
 You can skip this step if you're not concerned with authorizing or brodcasting 
 privately to ActionCable connections
@@ -31,7 +41,7 @@ privately to ActionCable connections
     `identified_by`. The identifier you use will also need to be passed to your 
     job.
 
-### Enable ActiveJobChannel for a job
+### <a name="enable-active_job_channel"></a> 2. Enable ActiveJobChannel for a job
 1. For each job you'd like to be notified about, call `active_job_channel` in 
     its class
 2. To broadcast notifications privately, set the identifier you configured in
@@ -62,7 +72,7 @@ Notifications will be broadcast to `ajc_identifier` by default. To broadcast
 all notifications for a job to all ActionCable connections, pass 
 `{ global_broadcast: true }` to `active_job_channel`.
 
-### Handle ActiveJobChannel broadcasts
+### <a name="handle-broadcasts"></a> 3. Handle ActiveJobChannel broadcasts
 
 1. Include `active_job_channel.js` in your layouts
 
