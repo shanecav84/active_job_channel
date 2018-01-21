@@ -85,8 +85,21 @@ all notifications for a job to all ActionCable connections, pass
     ActiveJobChannel.onJobFailure = function(job) { $.notify(job.name + ' failed!') };
     ```
 
-    `job` has the attributes `name` and `status`. A failed `job` includes an 
-    `error` attribute. `status` is one of `success` or `failure`. 
+    `job` is a JSON object that has the attributes `status` and `data`. The value
+    of `status` can be one of `success` or `failure`. The values of `data` is a
+    JSON object of [job data serialized by ActiveJob](https://github.com/rails/rails/blob/649f19cab1d4dd805c915912ede29c86655084cd/activejob/lib/active_job/core.rb#L79). 
+    It has the following keys:
+    - "job_class"
+    - "job_id" - Internal ActiveJob job identifier
+    - "provider_job_id" - ID optionally provided by ActiveJob queue adapter
+    - "queue_name"
+    - "priority"
+    - "arguments" - arguments passed to the job
+    - "executions" - how many times the job was attempted
+    - "locale"
+
+    A failed `job` includes an `error` attribute with the result of calling
+    `inspect` on the exception that precpitated the failure.
 
 
 ## Caveats

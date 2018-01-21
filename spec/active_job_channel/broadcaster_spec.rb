@@ -47,7 +47,7 @@ module ActiveJobChannel
             with(
               ::ActiveJobChannel::Channel::CHANNEL_NAME,
               status: 'failure',
-              job: {},
+              data: {},
               error: StandardError.new.inspect
             )
 
@@ -82,7 +82,7 @@ module ActiveJobChannel
                 "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
                   "#{ajc_identifier}",
                 status: 'failure',
-                job: {},
+                data: {},
                 error: StandardError.new.inspect
               )
 
@@ -107,7 +107,7 @@ module ActiveJobChannel
             with(
               ::ActiveJobChannel::Channel::CHANNEL_NAME,
               status: 'success',
-              job: {}
+              data: {}
             )
 
           DummyJob.perform_now
@@ -137,7 +137,7 @@ module ActiveJobChannel
                 "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
                   "#{ajc_identifier}",
                 status: 'success',
-                job: {}
+                data: {}
               )
 
             DummyJob.perform_now
