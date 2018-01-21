@@ -112,27 +112,28 @@ module ActiveJobChannel
 
           DummyJob.perform_now
         end
+      end
 
-        context 'ajc_identifier' do
-          it 'broadcast success to the identifier' do
-            DummyJob.active_job_channel global_broadcast: false
-            ajc_identifier = 'ajc_identifier'
-            allow_any_instance_of(DummyJob).
-              to receive(:ajc_identifier).
+      describe 'ajc_identifier' do
+        it 'broadcasts success to the identifier' do
+          DummyJob.active_job_channel global_broadcast: false
+          ajc_identifier = 'ajc_identifier'
+          allow_any_instance_of(DummyJob).
+            to receive(:ajc_identifier).
               and_return(ajc_identifier)
-            allow_any_instance_of(DummyJob).
-              to receive(:serialize).
+          allow_any_instance_of(DummyJob).
+            to receive(:serialize).
               and_return({})
-            expect_any_instance_of(DummyJob).
-              to receive(:broadcast_success).
+          expect_any_instance_of(DummyJob).
+            to receive(:broadcast_success).
               and_call_original
 
-            action_cable_server = double 'action_cable_server'
-            allow(ActionCable).
-              to receive(:server).
+          action_cable_server = double 'action_cable_server'
+          allow(ActionCable).
+            to receive(:server).
               and_return(action_cable_server)
-            expect(action_cable_server).
-              to receive(:broadcast).
+          expect(action_cable_server).
+            to receive(:broadcast).
               with(
                 "#{::ActiveJobChannel::Channel::CHANNEL_NAME}#" \
                   "#{ajc_identifier}",
@@ -140,27 +141,24 @@ module ActiveJobChannel
                 data: {}
               )
 
-            DummyJob.perform_now
-          end
-
-          it 'raises error for global_broadcast with ajc_identifer present' do
-            DummyJob.active_job_channel global_broadcast: true
-            allow_any_instance_of(DummyJob).
-              to receive(:ajc_identifier).
-              and_return('ajc_identifier')
-            expect { DummyJob.perform_now }.
-              to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError).
-              with_message(/DummyJob/)
-          end
+          DummyJob.perform_now
         end
-      end
 
-      describe 'NoIdentifierError' do
-        it 'is raised when ajc_identifier is missing for private broadcast' do
+        it 'must not be set for a global broadcast' do
+          DummyJob.active_job_channel global_broadcast: true
+          allow_any_instance_of(DummyJob).
+            to receive(:ajc_identifier).
+              and_return('ajc_identifier')
+          expect { DummyJob.perform_now }.
+            to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError).
+              with_message(/DummyJob/)
+        end
+
+        it 'must be set for a private broadcast' do
           DummyJob.active_job_channel global_broadcast: false
           expect { DummyJob.perform_now }.
             to raise_error(::ActiveJobChannel::NoIdentifierError).
-            with_message(/DummyJob/)
+              with_message(/DummyJob/)
         end
       end
     end
