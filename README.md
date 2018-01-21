@@ -81,8 +81,8 @@ all notifications for a job to all ActionCable connections, pass
     ```javascript
     //= require notifyjs
 
-    ActiveJobChannel.onJobSuccess = function(job) { $.notify(job.name + ' succeeded!') }; 
-    ActiveJobChannel.onJobFailure = function(job) { $.notify(job.name + ' failed!') };
+    ActiveJobChannel.onJobSuccess = function(job) { $.notify(job.data.job_class + ' succeeded!') }; 
+    ActiveJobChannel.onJobFailure = function(job) { $.notify(job.data.job_class + ' failed!') };
     ```
 
     `job` is a JSON object that has the attributes `status` and `data`. The value
