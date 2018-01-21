@@ -25,7 +25,10 @@ module ActiveJobChannel
 
       def ajc_channel_name
         if ajc_config[:global_broadcast]
-          raise UnnecessaryIdentifierError if ajc_identifier.present?
+          if ajc_identifier.present?
+            raise UnnecessaryIdentifierError, self.class.to_s
+          end
+
           ::ActiveJobChannel::Channel::CHANNEL_NAME
         else
           [::ActiveJobChannel::Channel::CHANNEL_NAME, ajc_identifier].
@@ -35,7 +38,10 @@ module ActiveJobChannel
       end
 
       def ajc_identifier
-        raise ::ActiveJobChannel::NoIdentifierError if ajc_identifier_missing?
+        if ajc_identifier_missing?
+          raise ::ActiveJobChannel::NoIdentifierError, self.class.to_s
+        end
+
         @ajc_identifier
       end
 

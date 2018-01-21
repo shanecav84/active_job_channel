@@ -149,7 +149,8 @@ module ActiveJobChannel
               to receive(:ajc_identifier).
               and_return('ajc_identifier')
             expect { DummyJob.perform_now }.
-              to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError)
+              to raise_error(::ActiveJobChannel::UnnecessaryIdentifierError).
+              with_message(/DummyJob/)
           end
         end
       end
@@ -158,7 +159,8 @@ module ActiveJobChannel
         it 'is raised when ajc_identifier is missing for private broadcast' do
           DummyJob.active_job_channel global_broadcast: false
           expect { DummyJob.perform_now }.
-            to raise_error(::ActiveJobChannel::NoIdentifierError)
+            to raise_error(::ActiveJobChannel::NoIdentifierError).
+            with_message(/DummyJob/)
         end
       end
     end
