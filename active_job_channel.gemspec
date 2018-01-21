@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = ActiveJobChannel::VERSION
   s.authors = ['Shane Cavanaugh']
   s.email = ['shane@shanecav.net']
-  s.summary = "Uses ActionCable to alert front-end users of ActiveJobs' status'"
+  s.summary = "Uses ActionCable to alert front-end users of ActiveJobs' status"
   s.license = 'MIT'
 
   s.files = Dir[
