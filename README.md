@@ -96,7 +96,7 @@ all notifications for a job to all ActionCable connections, pass
     ```
 
     `job` is a JSON object that has the attributes `status` and `data`. The value
-    of `status` can be one of `success` or `failure`. The values of `data` is a
+    of `status` can be one of `success` or `failure`. The value of `data` is a
     JSON object of [job data serialized by ActiveJob](https://github.com/rails/rails/blob/649f19cab1d4dd805c915912ede29c86655084cd/activejob/lib/active_job/core.rb#L79). 
     It has the following keys:
     - "job_class"
