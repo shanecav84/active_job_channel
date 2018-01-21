@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir[
     '{app,config,lib}/**/*',
+    'CHANGELOG.md',
     'MIT-LICENSE',
     'Rakefile',
     'README.md'
