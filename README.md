@@ -46,7 +46,9 @@ privately to ActionCable connections
     its class
 2. To broadcast notifications privately, set the identifier you configured in
     your ActionCable Connection setup to either the instance variable 
-    `@ajc_identifier` or the method `ajc_identifier`
+    `@ajc_identifier` or the method `ajc_identifier`. To broadcast publicly to
+    all ActionCable connections, pass `{ global_broadcast: true }` to
+    `active_job_channel` and do not set `ajc_identifier`
 
 ```ruby
 class MyJob < ActiveJob::Base
