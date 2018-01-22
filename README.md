@@ -44,27 +44,38 @@ privately to ActionCable connections
 ### <a name="enable-active_job_channel"></a> 2. Enable ActiveJobChannel for a job
 1. For each job you'd like to be notified about, call `active_job_channel` in 
     its class
-2. To broadcast notifications privately, set the identifier you configured in
-    your ActionCable Connection setup to either the instance variable 
-    `@ajc_identifier` or the method `ajc_identifier`. To broadcast publicly to
-    all ActionCable connections, pass `{ global_broadcast: true }` to
-    `active_job_channel` and do not set `ajc_identifier`
+2. Private vs. Public broadcasts
+    1. To broadcast notifications privately to a specific connection, set the 
+    identifier you configured in your ActionCable Connection setup to either 
+    the instance variable `@ajc_identifier` or the method `ajc_identifier`. 
+    
+    ```ruby
+    class MyJob < ActiveJob::Base
+      active_job_channel
+    
+      def perform(current_user)
+        @ajc_identifier = current_user
+      end
+    
+      private
+    
+      # def ajc_identifier
+      #   User.find_by(key: value)
+      # end
+    end
+    ```
+    
+    2. To broadcast publicly to all ActionCable connections, pass 
+    `{ global_broadcast: true }` to `active_job_channel` and do not set `ajc_identifier`
+    
+    ```ruby
+    class MyJob < ActiveJob::Base
+      active_job_channel global_broadcast: true
+    
+      def perform; end
+    end
+    ```
 
-```ruby
-class MyJob < ActiveJob::Base
-  active_job_channel
-
-  def perform(current_user)
-    @ajc_identifier = current_user
-  end
-
-  private
-
-  # def ajc_identifier
-  #   User.find_by(key: value)
-  # end
-end
-```
 
 #### Configuration
 
