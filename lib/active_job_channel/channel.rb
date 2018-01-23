@@ -9,10 +9,6 @@ module ActiveJobChannel
 
     private
 
-    def global_stream
-      stream_from CHANNEL_NAME
-    end
-
     def private_stream
       [CHANNEL_NAME, connection.connection_identifier].join('#')
     end
