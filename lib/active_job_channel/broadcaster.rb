@@ -19,6 +19,7 @@ module ActiveJobChannel
       end
     end
 
+    # rubocop:disable Metrics/BlockLength
     included do
       private
 
@@ -67,5 +68,6 @@ module ActiveJobChannel
         )
       end
     end
+    # rubocop:enable Metrics/BlockLength
   end
 end
