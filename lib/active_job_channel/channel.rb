@@ -1,3 +1,5 @@
+require 'action_cable'
+
 module ActiveJobChannel
   class Channel < ::ActionCable::Channel::Base
     CHANNEL_NAME = 'active_job_channel'.freeze

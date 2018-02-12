@@ -42,8 +42,8 @@ privately to ActionCable connections
     job.
 
 ### <a name="enable-active_job_channel"></a> 2. Enable ActiveJobChannel for a job
-1. For each job you'd like to be notified about, call `active_job_channel` in 
-    its class
+1. For each job you'd like to be notified about, include `ActiveJobChannel` and 
+    call `active_job_channel` in its class
 2. Private vs. Public broadcasts
     1. To broadcast notifications privately to a specific connection, set the 
     identifier you configured in your ActionCable Connection setup to either 
@@ -51,6 +51,7 @@ privately to ActionCable connections
     
     ```ruby
     class MyJob < ActiveJob::Base
+      include ActiveJobChannel
       active_job_channel
     
       def perform(current_user)
@@ -70,6 +71,7 @@ privately to ActionCable connections
     
     ```ruby
     class MyJob < ActiveJob::Base
+      include ActiveJobChannel
       active_job_channel global_broadcast: true
     
       def perform; end

@@ -1,8 +1,11 @@
-require 'active_job_channel'
+require 'active_support/concern'
+require 'active_job_channel/channel'
 
 module ActiveJobChannel
   module Broadcaster
-    module ClassMethods
+    extend ActiveSupport::Concern
+
+    class_methods do
       def active_job_channel(options = {})
         class_attribute :ajc_config
         self.ajc_config = { global_broadcast: false }
@@ -13,12 +16,10 @@ module ActiveJobChannel
           broadcast_failure(exception)
           raise exception
         end
-
-        include ActiveJobChannel::Broadcaster::InstanceMethods
       end
     end
 
-    module InstanceMethods
+    included do
       private
 
       attr_writer :ajc_identifier
@@ -50,7 +51,7 @@ module ActiveJobChannel
       end
 
       def broadcast_failure(exception)
-        ActionCable.server.broadcast(
+        ::ActionCable.server.broadcast(
           ajc_channel_name,
           status: 'failure',
           data: serialize,
@@ -59,7 +60,7 @@ module ActiveJobChannel
       end
 
       def broadcast_success
-        ActionCable.server.broadcast(
+        ::ActionCable.server.broadcast(
           ajc_channel_name,
           status: 'success',
           data: serialize

@@ -1,11 +1,14 @@
 require 'spec_helper'
+require 'active_job'
 
 module ActiveJobChannel
   module Broadcaster
     RSpec.describe ClassMethods do
       before(:each) do
         class DummyJob < ::ActiveJob::Base
+          include ActiveJobChannel
           active_job_channel global_broadcast: true
+
           def perform
             fake
           end
@@ -14,7 +17,6 @@ module ActiveJobChannel
 
           def fake; end
         end
-        DummyJob.extend(described_class)
       end
 
       describe '.active_job_channel' do
