@@ -10,7 +10,7 @@ module ActiveJobChannel
 
     ::ActiveSupport.on_load(:action_cable) do
       require 'active_job_channel/channel'
-      routes.draw do
+      ActiveJobChannel::Engine.routes.draw do
         mount ::ActionCable.server => '/cable/active_job_channel'
       end
     end
