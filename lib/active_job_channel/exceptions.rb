@@ -19,8 +19,8 @@ module ActiveJobChannel
         'setting up an identifier in your ActionCable Connection, visit ' \
         'http://guides.rubyonrails.org/' \
         "action_cable_overview.html#connection-setup\n\nTo broadcast " \
-        'globally without an identifier, pass in ' \
-        '`{ global_broadcast: true }` to `active_job_channel` as part of an ' \
+        'publically without an identifier, pass in ' \
+        '`{ public_broadcast: true }` to `active_job_channel` as part of an ' \
         'options hash.'
     end
   end
@@ -38,8 +38,8 @@ module ActiveJobChannel
     def generate_message
       'ActiveJobChannel has been configured to broadcast globally for ' \
         "#{job_class}, but an `ajc_identifier` has been set. If the job " \
-        'information should be broadcast globally, remove the ' \
-        '`ajc_identifier`. Otherwise, pass in `{ global_broadcast: true } ` ' \
+        'information should be broadcast publically, remove the ' \
+        '`ajc_identifier`. Otherwise, pass in `{ public_broadcast: true } ` ' \
         'to `active_job_channel` as part of an options hash'
     end
   end

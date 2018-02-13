@@ -6,7 +6,7 @@ module ActiveJobChannel
     before(:each) do
       class DummyJob < ::ActiveJob::Base
         include ActiveJobChannel
-        active_job_channel global_broadcast: true
+        active_job_channel public_broadcast: true
 
         def perform
           fake
@@ -21,10 +21,10 @@ module ActiveJobChannel
     describe '.active_job_channel' do
       it 'sets ajc_config with options hash' do
         DummyJob.active_job_channel
-        expect(DummyJob.ajc_config).to eq(global_broadcast: false)
+        expect(DummyJob.ajc_config).to eq(public_broadcast: false)
 
-        DummyJob.active_job_channel global_broadcast: true
-        expect(DummyJob.ajc_config).to eq(global_broadcast: true)
+        DummyJob.active_job_channel public_broadcast: true
+        expect(DummyJob.ajc_config).to eq(public_broadcast: true)
       end
     end
 
@@ -57,7 +57,7 @@ module ActiveJobChannel
 
       context 'with ajc_identifier' do
         it 'broadcast failure to the identifier' do
-          DummyJob.active_job_channel global_broadcast: false
+          DummyJob.active_job_channel public_broadcast: false
           ajc_identifier = 'ajc_identifier'
           allow_any_instance_of(DummyJob).
             to receive(:fake).
@@ -117,7 +117,7 @@ module ActiveJobChannel
 
     describe 'ajc_identifier' do
       it 'broadcasts success to the identifier' do
-        DummyJob.active_job_channel global_broadcast: false
+        DummyJob.active_job_channel public_broadcast: false
         ajc_identifier = 'ajc_identifier'
         allow_any_instance_of(DummyJob).
           to receive(:ajc_identifier).
@@ -145,8 +145,8 @@ module ActiveJobChannel
         DummyJob.perform_now
       end
 
-      it 'must not be set for a global broadcast' do
-        DummyJob.active_job_channel global_broadcast: true
+      it 'must not be set for a public broadcast' do
+        DummyJob.active_job_channel public_broadcast: true
         allow_any_instance_of(DummyJob).
           to receive(:ajc_identifier).
           and_return('ajc_identifier')
@@ -156,7 +156,7 @@ module ActiveJobChannel
       end
 
       it 'must be set for a private broadcast' do
-        DummyJob.active_job_channel global_broadcast: false
+        DummyJob.active_job_channel public_broadcast: false
         expect { DummyJob.perform_now }.
           to raise_error(::ActiveJobChannel::NoIdentifierError).
           with_message(/DummyJob/)

@@ -28,7 +28,7 @@ release has non-functional changes, mostly additional specs and doc updates.
 ## 0.0.3 - 2018-01-13
 ### Added
 - Broadcast notifications privately to connection identifiers
-- Option to broadcast notifications globally to all connections
+- Option to broadcast notifications publically to all connections
 - Configurable client-side broadcast callbacks `ActiveJobChannel.onJobSuccess`
     and `ActiveJobChannel.onJobFailure`
 

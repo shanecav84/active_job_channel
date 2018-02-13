@@ -9,7 +9,7 @@ Use ActionCable to alert front-end users of finished ActiveJobs
   1. [Create ActionCable Connection](#create-connection) (optional)
   2. [Enable ActiveJobChannel for a job](#enable-active_job_channel)
       * [Configuration](#configuration)
-        * [`global_brodcast`](#global_broadcast)
+        * [`public_broadcast`](#public_broadcast)
   3. [Handle ActiveJobChannel broadcasts](#handle-broadcasts)
 * [Caveats](#caveats)
 * [Todo](#todo)
@@ -67,12 +67,12 @@ privately to ActionCable connections
     ```
     
     2. To broadcast publicly to all ActionCable connections, pass 
-    `{ global_broadcast: true }` to `active_job_channel` and do not set `ajc_identifier`
+    `{ public_broadcast: true }` to `active_job_channel` and do not set `ajc_identifier`
     
     ```ruby
     class MyJob < ActiveJob::Base
       include ActiveJobChannel
-      active_job_channel global_broadcast: true
+      active_job_channel public_broadcast: true
     
       def perform; end
     end
@@ -81,11 +81,11 @@ privately to ActionCable connections
 
 #### Configuration
 
-##### global_broadcast
+##### public_broadcast
 
 Notifications will be broadcast to `ajc_identifier` by default. To broadcast
 all notifications for a job to all ActionCable connections, pass 
-`{ global_broadcast: true }` to `active_job_channel`.
+`{ public_broadcast: true }` to `active_job_channel`.
 
 ### <a name="handle-broadcasts"></a> 3. Handle ActiveJobChannel broadcasts
 

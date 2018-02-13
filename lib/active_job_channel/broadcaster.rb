@@ -8,7 +8,7 @@ module ActiveJobChannel
     class_methods do
       def active_job_channel(options = {})
         class_attribute :ajc_config
-        self.ajc_config = { global_broadcast: false }
+        self.ajc_config = { public_broadcast: false }
         ajc_config.merge!(options)
 
         after_perform :broadcast_success
@@ -26,7 +26,7 @@ module ActiveJobChannel
       attr_writer :ajc_identifier
 
       def ajc_channel_name
-        if ajc_config[:global_broadcast]
+        if ajc_config[:public_broadcast]
           if ajc_identifier.present?
             raise UnnecessaryIdentifierError, self.class.to_s
           end
@@ -48,7 +48,7 @@ module ActiveJobChannel
       end
 
       def ajc_identifier_missing?
-        !ajc_config[:global_broadcast] && @ajc_identifier.nil?
+        !ajc_config[:public_broadcast] && @ajc_identifier.nil?
       end
 
       def broadcast_failure(exception)
