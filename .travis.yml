@@ -1,5 +1,6 @@
 cache: bundler
 language: ruby
+script: "bundle exec rake rubocop spec"
 before_install:
   - gem update --system
 rvm:
