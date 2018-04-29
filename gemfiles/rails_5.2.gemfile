@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 5.2'
+
+group :development, :test do
+  gem 'bundler-audit'
+  gem 'byebug'
+  gem 'puma' # Supports WebSockets for spec/dummy app
+  gem 'rspec'
+  gem 'rubocop', require: false
+end
