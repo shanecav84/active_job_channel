@@ -2,34 +2,20 @@ module ActiveJobChannel
   class Error < StandardError; end
 
   class NoIdentifierError < ::ActiveJobChannel::Error
-    attr_reader :job_class
+    MESSAGE = 'ActiveJobChannel has been configured to broadcast privately ' \
+        'for %<job_class>s, but an `ajc_identifier` has not been set.'.freeze
 
     def initialize(job_class)
-      @job_class = job_class
-      super(generate_message)
-    end
-
-    private
-
-    def generate_message
-      'ActiveJobChannel has been configured to broadcast privately for ' \
-        "#{job_class}, but an `ajc_identifier` has not been set."
+      super(format MESSAGE, job_class: job_class)
     end
   end
 
   class UnnecessaryIdentifierError < ::ActiveJobChannel::Error
-    attr_reader :job_class
+    MESSAGE = 'ActiveJobChannel has been configured to broadcast globally' \
+      'for %<job_class>s, but an `ajc_identifier` has been set.'.freeze
 
     def initialize(job_class)
-      @job_class = job_class
-      super(generate_message)
-    end
-
-    private
-
-    def generate_message
-      'ActiveJobChannel has been configured to broadcast globally for ' \
-        "#{job_class}, but an `ajc_identifier` has been set."
+      super(format MESSAGE, job_class: job_class)
     end
   end
 end
