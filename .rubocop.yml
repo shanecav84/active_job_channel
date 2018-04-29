@@ -2,7 +2,8 @@ AllCops:
   TargetRubyVersion: 2.2
   Exclude:
     - 'spec/dummy/**/*'
-    - 'vendor/**/*' # Continuous integration dependency install path
+    - 'vendor/**/*' # TravisCI
+    - 'gemfiles/vendor/**/*' # TravisCI
 
 # The fixed indentation style is rational. To align with the first parameters
 # is arguably friendly, but makes for long lines and obscures control flow.
